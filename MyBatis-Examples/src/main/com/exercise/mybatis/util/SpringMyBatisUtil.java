@@ -1,16 +1,21 @@
 package com.exercise.mybatis.util;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.mybatis.spring.SqlSessionTemplate;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.util.Properties;
 
-public abstract class MybatisUtil {
-    private final static SqlSessionFactory sqlSessionFactory;
+/**
+ * 使用MyBatis-Spring来实现自动提交
+ */
+public abstract class SpringMyBatisUtil {
+    private static final SqlSession sqlSession;
 
     static {
         String resource = "mybatis/v1/mybatis-config.xml";
@@ -25,10 +30,11 @@ public abstract class MybatisUtil {
             throw new UncheckedIOException(e);
         }
 
-        sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, properties);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, properties);
+        sqlSession = new SqlSessionTemplate(sqlSessionFactory);
     }
 
-    public static SqlSessionFactory getSqlSessionFactory() {
-        return sqlSessionFactory;
+    public static SqlSession getSqlSession() {
+        return sqlSession;
     }
 }
