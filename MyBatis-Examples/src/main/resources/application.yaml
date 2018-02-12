@@ -8,3 +8,6 @@ spring:
 mybatis:
   type-aliases-package: com.exercise.mybatis.v1
   mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    default-executor-type: simple
+    default-statement-timeout: 30
