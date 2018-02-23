@@ -3,14 +3,17 @@ package io.sununiq.conf;
 import io.sununiq.conf.impl.BaseConf;
 import io.sununiq.conf.impl.PropertyConf;
 
-public abstract class ConfLoader {
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-    public static Conf load(String conf) {
-        return load(conf, PropertyConf.class);
+public abstract class ConfLoader {
+    private static final Map<String, Conf> confMap = new ConcurrentHashMap<>();
+
+    public static void load(String conf) {
+        load(conf, PropertyConf.class);
     }
 
-    public static Conf load(String conf, Class<? extends BaseConf> aClass) {
-
+    public static void load(String conf, Class<? extends BaseConf> aClass) {
         if(null == conf || conf.equals("")) {
             throw new IllegalArgumentException("the config file name is null");
         }
@@ -21,9 +24,17 @@ public abstract class ConfLoader {
 
         try {
             BaseConf baseConf = aClass.newInstance();
-            return baseConf.load(conf);
+            Conf loadConf = baseConf.load(conf);
+            confMap.put(conf, loadConf);
         } catch (ReflectiveOperationException e) {
-            return null;
+            e.printStackTrace();
         }
+    }
+
+    public static Conf getConf(String conf) {
+        if(!confMap.containsKey(conf)) {
+            load(conf);
+        }
+        return confMap.get(conf);
     }
 }
