@@ -72,7 +72,7 @@ public abstract class BaseConf implements Conf {
     public <T extends Annotation> T get(Class<T> type) {
         @SuppressWarnings("unchecked")
         T obj = (T) Proxy.newProxyInstance(type.getClassLoader(), new Class[]{type}, (proxy, method, args) -> {
-            String value = properties.getProperty(method.getName());
+            String value = properties.getProperty(camel2Dot(method.getName()));
             if(value == null) {
                 Object defaultValue = method.getDefaultValue();
                 if(defaultValue == null) {
@@ -85,5 +85,21 @@ public abstract class BaseConf implements Conf {
             return ConvertUtils.convert(value, method.getReturnType());
         });
         return obj;
+    }
+
+    /**
+     * 驼峰命名方式转换成properties文件中的dot连接方式
+     * @param methodName
+     * @return
+     */
+    private String camel2Dot(String methodName) {
+        StringBuilder builder = new StringBuilder();
+        for (char c :methodName.toCharArray()){
+            if(Character.isUpperCase(c)) {
+                builder.append('.');
+            }
+            builder.append(Character.toLowerCase(c));
+        }
+        return builder.toString();
     }
 }

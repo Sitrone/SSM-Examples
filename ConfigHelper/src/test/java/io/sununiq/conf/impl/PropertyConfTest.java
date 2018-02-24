@@ -25,6 +25,7 @@ public class PropertyConfTest {
         System.out.println(appConf.name());
         System.out.println(appConf.age());
         System.out.println(appConf.address());
+        System.out.println(appConf.secondNickname());
     }
 
 } 

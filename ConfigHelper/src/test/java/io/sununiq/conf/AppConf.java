@@ -6,4 +6,6 @@ public @interface AppConf {
     int age() default 18;
 
     String address() default "";
+
+    String secondNickname() default "Jin";
 }

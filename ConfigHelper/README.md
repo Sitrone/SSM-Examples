@@ -1,4 +1,4 @@
-## 配置文件工具类 
+## Properties配置文件工具类 
 
 #### 特性
 * 读取properties配置文件  

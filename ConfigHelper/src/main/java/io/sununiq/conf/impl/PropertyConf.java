@@ -13,6 +13,7 @@ public class PropertyConf extends BaseConf {
         try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(conf)) {
             Properties temp = new Properties();
             temp.load(inputStream);
+            temp.forEach((key, value) -> super.properties.put(key.toString().toLowerCase(), value));
             super.properties = temp;
             return this;
         } catch (IOException e) {
