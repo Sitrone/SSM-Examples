@@ -40,7 +40,7 @@ public class CycleBarrierUsage {
 
                 cyclicBarrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
-                log.error("Unexpected error occured.", e);
+                log.error("Unexpected error occurred.", e);
             }
             log.info("{} all thread task done，go on handle other task...", Thread.currentThread().getName());
         }
