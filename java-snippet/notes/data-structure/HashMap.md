@@ -49,4 +49,4 @@ static int indexFor(int h, int length) {
 
 ### ref
 1. [疫苗：JAVA HASHMAP的死循环](https://coolshell.cn/articles/9606.html?spm=5176.100239.0.0.H5jttK)
-2. []()
+2. [高性能场景下，Map家族的优化使用建议](http://calvin1978.blogcn.com/articles/hashmap.html?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
