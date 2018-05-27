@@ -11,6 +11,8 @@ import java.util.Queue;
 /**
  * 打印目录及子目录
  * bfs or dfs
+ * bfs： queue实现
+ * dfs： stack实现
  */
 @Slf4j
 public class ListFiles {
@@ -61,6 +63,10 @@ public class ListFiles {
 
     }
 
+    /**
+     * dfs 非递归实现
+     * @param startPath
+     */
     public static void dfsListFiles1(File startPath) {
         Deque<File> fileStack = new ArrayDeque<>();
         fileStack.push(startPath);
@@ -81,9 +87,4 @@ public class ListFiles {
         }
     }
 
-    public static void main(String[] args) {
-//        bfsListFiles(new File("/Users/sunzhe/github/SSM-Examples"));
-//        bfsListFiles1(new File("/Users/sunzhe/github/SSM-Examples"));
-        dfsListFiles1(new File("/Users/sunzhe/github/SSM-Examples"));
-    }
 }
