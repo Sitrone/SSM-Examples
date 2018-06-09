@@ -1,4 +1,4 @@
-# Java 常用技术，设计SSM，一些小的工具
+# Java 常用技术，涉及SSM，一些小的工具
 1. ConfigHelper，配置文件读取工具类，使用注解的方式，类型安全
 2. Hibernate—Example，从原生jdbc到hibernate集成
 3. MyBatis-Example，从原生jdbc到MyBatis集成

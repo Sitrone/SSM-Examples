@@ -1,5 +1,7 @@
 package com.sununiq.snippet.jianzhioffer;
 
+import com.sununiq.snippet.jianzhioffer.domain.Node;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -16,6 +18,10 @@ public class Question5 {
         printFromTail(first);
 
         printFromTailWithStack(first);
+
+        Node last = revert(first);
+
+        System.out.println(last.value);
     }
 
     public static void printFromTailWithStack(Node head) {
@@ -32,26 +38,45 @@ public class Question5 {
      * 递归的本质就是个栈结构
      */
     public static void printFromTail(Node head) {
-        if (head != null) {
+        if(head != null) {
             printFromTail(head.next);
             System.out.println(head.value);
         }
     }
 
-
-    static class Node {
-        int value;
-        Node next;
-
-        public Node(int value) {
-            this.value = value;
+    /**
+     * 翻转单链表
+     */
+    public static Node revert(Node head) {
+        if(head == null || head.next == null) {
+            return head;
         }
 
-        Node next(int value) {
-            Node node = new Node(value);
-            this.next = node;
-            return node;
+//        Node cur = head;
+//        Node next = cur.next;
+//        while (next != null) {
+//            Node temp = next.next;
+//            next.next = cur;
+//            cur = next;
+//            next = temp;
+//        }
+//        head.next = null;
+//        return cur;
+
+        Node pre = head;
+        Node cur = head.next;
+        Node temp;
+        while (cur != null) {
+            temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
         }
+
+        head.next = null;
+        return pre;
     }
+
+
 }
 
