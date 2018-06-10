@@ -19,6 +19,6 @@ public class Question20 {
             return;
         }
 
-    
+
     }
 }
