@@ -1,17 +1,17 @@
 package com.sununiq.snippet.jianzhioffer;
 
-import com.sununiq.snippet.jianzhioffer.domain.Node;
+import com.sununiq.snippet.jianzhioffer.domain.ListNode;
 
 /**
  * 在O(1)时间删除链表节点, 前提，链表中确实存在节点
  */
 public class Question13 {
     public static void main(String[] args) {
-        Node first = new Node(1);
-        Node s = new Node(2);
-        Node t = new Node(3);
-        Node f = new Node(4);
-        Node fi = new Node(5);
+        ListNode first = new ListNode(1);
+        ListNode s = new ListNode(2);
+        ListNode t = new ListNode(3);
+        ListNode f = new ListNode(4);
+        ListNode fi = new ListNode(5);
 
         first.next = s;
         s.next = t;
@@ -24,12 +24,12 @@ public class Question13 {
     }
 
 
-    static void deleteNode(Node head, Node toBeDeleted) {
+    static void deleteNode(ListNode head, ListNode toBeDeleted) {
         if(head == null || toBeDeleted == null) {
             return;
         }
 
-        Node next = toBeDeleted.next;
+        ListNode next = toBeDeleted.next;
 
         // 链表有多个节点，要删除的不是尾节点:O(1)时间
         if(next != null) {
@@ -44,7 +44,7 @@ public class Question13 {
 
             // 链表有多个节点，要删除的是尾节点:O(n)时间
         } else {
-            Node temp = head;
+            ListNode temp = head;
             while (temp.next != toBeDeleted) {
                 temp = temp.next;
             }

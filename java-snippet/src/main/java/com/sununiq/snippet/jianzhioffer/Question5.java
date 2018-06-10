@@ -1,6 +1,6 @@
 package com.sununiq.snippet.jianzhioffer;
 
-import com.sununiq.snippet.jianzhioffer.domain.Node;
+import com.sununiq.snippet.jianzhioffer.domain.ListNode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -12,19 +12,19 @@ import java.util.Deque;
  */
 public class Question5 {
     public static void main(String[] args) {
-        Node first = new Node(1);
+        ListNode first = new ListNode(1);
         first.next(2).next(3).next(4).next(5);
 
         printFromTail(first);
 
         printFromTailWithStack(first);
 
-        Node last = revert(first);
+        ListNode last = revert(first);
 
         System.out.println(last.value);
     }
 
-    public static void printFromTailWithStack(Node head) {
+    public static void printFromTailWithStack(ListNode head) {
         Deque<Integer> stack = new ArrayDeque<>();
         while (head != null) {
             stack.push(head.value);
@@ -37,7 +37,7 @@ public class Question5 {
     /**
      * 递归的本质就是个栈结构
      */
-    public static void printFromTail(Node head) {
+    public static void printFromTail(ListNode head) {
         if(head != null) {
             printFromTail(head.next);
             System.out.println(head.value);
@@ -47,15 +47,15 @@ public class Question5 {
     /**
      * 翻转单链表
      */
-    public static Node revert(Node head) {
+    public static ListNode revert(ListNode head) {
         if(head == null || head.next == null) {
             return head;
         }
 
-//        Node cur = head;
-//        Node next = cur.next;
+//        ListNode cur = head;
+//        ListNode next = cur.next;
 //        while (next != null) {
-//            Node temp = next.next;
+//            ListNode temp = next.next;
 //            next.next = cur;
 //            cur = next;
 //            next = temp;
@@ -63,9 +63,9 @@ public class Question5 {
 //        head.next = null;
 //        return cur;
 
-        Node pre = head;
-        Node cur = head.next;
-        Node temp;
+        ListNode pre = head;
+        ListNode cur = head.next;
+        ListNode temp;
         while (cur != null) {
             temp = cur.next;
             cur.next = pre;
