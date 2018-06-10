@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j2的装配 -->
+<configuration status="OFF">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%c{1.}:%L|%m%n"/>
+        </Console>
+
+        <RollingFile name="runningLog" fileName="../logs/run.log"
+                     filePattern="../logs/run-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%c{1.}:%L|%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <root level="info">
+            <appender-ref ref="Console"/>
+        </root>
+        <Logger name="com.sununiq.scaffold" level="debug" additivity="false">
+            <!--保存文件,只存储info级别以上的日志-->
+            <AppenderRef ref="runningLog" level="info"/>
+            <!--控制台打印指定包路径下面的debug-->
+            <AppenderRef ref="Console"/>
+        </Logger>
+    </loggers>
+</configuration>
