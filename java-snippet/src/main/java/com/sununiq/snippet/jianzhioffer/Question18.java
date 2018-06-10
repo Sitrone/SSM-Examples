@@ -34,7 +34,7 @@ public class Question18 {
         if (!hasSubTree) {
             hasSubTree = hasSubTree(t1.right, t2);
         }
-        
+
         return hasSubTree;
     }
 
