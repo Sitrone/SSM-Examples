@@ -29,5 +29,8 @@ public class BootStrap {
 		User user = userService.queryById(2);
 		Logger logger = LoggerFactory.getLogger(BootStrap.class);
 		logger.info(user.toString());
+
+		// 需要主动调用close方法关闭容器
+//		applicationContext.close();
 	}
 }
