@@ -15,16 +15,18 @@ public abstract class JdbcDataSource {
     //数据库地址
     private static final String JDBCURL = "jdbc:mysql://localhost:3306/goo";
 
-    static {
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    // 无需主动加载driver
+//    static {
+//        try {
+//            Class.forName(DRIVER);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public static Connection getConnection() {
         try {
+        	// getConnection中会加载driver，通过spi机制
             return DriverManager.getConnection(JDBCURL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             throw new RuntimeException(e);
