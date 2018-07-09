@@ -56,6 +56,8 @@ public class SPITest {
 
     /**
      * 测试Java spi机制
+     * 系统的ServiceLoader通过返回一个Iterator对象能够做到对服务实例的懒加载
+     * 只有当调用iterator.next()方法时才会实例化下一个服务实例，只有需要使用的时候才进行实例化
      */
     private static void testJavaSPI() {
         // serviceLoader:首先根据约定的包获取到对应的接口文件，接着解析出文件中的所有服务实现类并加载实例化。
