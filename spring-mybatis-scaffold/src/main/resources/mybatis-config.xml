@@ -19,5 +19,10 @@
 
     <typeAliases>
         <typeAlias type="com.sununiq.scaffold.domain.User" alias="User"/>
+        <typeAlias type="com.sununiq.scaffold.domain.GenderIntEnum" alias="GenderEnum"/>
     </typeAliases>
+    
+    <typeHandlers>
+        <typeHandler handler="com.sununiq.scaffold.common.mybatis.EnumTypeHandler" javaType="GenderEnum"/>
+    </typeHandlers>
 </configuration>
