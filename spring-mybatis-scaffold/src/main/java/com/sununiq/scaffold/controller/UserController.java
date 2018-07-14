@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,13 +20,13 @@ public class UserController {
 
 	@GetMapping(value = "/v1/user/{id}")
 	@ResponseBody
-	public User findOneUser(@PathVariable("id") int id) {
+	public User findOneUser(@PathVariable("id") Integer id) {
 		log.info("Request id is:{}.", id);
 		return userService.queryById(id);
 	}
 
 	@GetMapping(value = "/v1/page/{id}")
-	public String showUserPage(ModelMap model, @PathVariable int id) {
+	public String showUserPage(ModelMap model, @PathVariable Integer id) {
 		log.info("Request id is:{}.", id);
 		User user = userService.queryById(id);
 
@@ -33,5 +34,12 @@ public class UserController {
 		model.addAttribute(user);
 
 		return "User";
+	}
+
+
+	@ExceptionHandler(Throwable.class)
+	@ResponseBody
+	public String handleException(Throwable e) {
+		return e.getMessage();
 	}
 }

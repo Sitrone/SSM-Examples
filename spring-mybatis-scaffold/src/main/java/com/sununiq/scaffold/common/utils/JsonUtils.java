@@ -1,6 +1,11 @@
 package com.sununiq.scaffold.common.utils;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sununiq.scaffold.common.exception.ScaffoldException;
 
@@ -22,7 +27,11 @@ public abstract class JsonUtils {
 	private static final ObjectMapper DE_MAPPER = new ObjectMapper();
 
 	static {
+		// 序列化忽略null字段
+		SER_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
+		// 反序列化忽略对象中对象中有而json串中没有的字段
+		DE_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
 	public static String toJson(Object o) throws ScaffoldException {
@@ -36,6 +45,17 @@ public abstract class JsonUtils {
 	public <T> T toObject(String s, Class<T> clazz) throws ScaffoldException {
 		try {
 			return DE_MAPPER.readValue(s, clazz);
+		} catch (IOException e) {
+			throw new ScaffoldException("Failed to convert string to object.", e);
+		}
+	}
+
+	/**
+	 * 复杂对象的解析
+	 */
+	public <T> T toObjectBy(String s, TypeReference<T> typeReference) throws ScaffoldException {
+		try {
+			return DE_MAPPER.readValue(s, typeReference);
 		} catch (IOException e) {
 			throw new ScaffoldException("Failed to convert string to object.", e);
 		}

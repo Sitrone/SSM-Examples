@@ -31,7 +31,20 @@
         <property name="supportedMediaTypes">
             <list>
                 <value>text/html;charset=UTF-8</value>
+                <!--<value>application/json</value>-->
             </list>
         </property>
     </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.sununiq.scaffold.common.interceptor.DefaultInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/v1/**"/>
+            <bean class="com.sununiq.scaffold.common.interceptor.DefaultWebInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
