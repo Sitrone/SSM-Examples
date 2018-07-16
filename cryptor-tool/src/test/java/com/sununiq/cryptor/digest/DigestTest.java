@@ -1,11 +1,13 @@
 package com.sununiq.cryptor.digest;
 
 import com.sununiq.cryptor.digest.util.FileUtil;
+import com.sununiq.cryptor.util.Encoder;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.File;
-import java.util.Base64;
 
 @Slf4j
 public class DigestTest {
@@ -26,8 +28,8 @@ public class DigestTest {
 		byte[] sha256Digest = Sha256Digest.getInstance().digest(file);
 
 		log.info("file is:{}", file);
-		log.info("md5 digest result is: {}", Base64.getEncoder().encodeToString(md5Digest));
-		log.info("sha256 digest result is: {}", Base64.getEncoder().encodeToString(sha256Digest));
+		log.info("md5 digest result is: {}", Encoder.HEX.encode(md5Digest));
+		log.info("sha256 digest result is: {}", Encoder.HEX.encode(sha256Digest));
 	}
 
 	@Test
@@ -39,8 +41,8 @@ public class DigestTest {
 		byte[] md5Digest = Md5Digest.getInstance().digest(file, offset, length);
 		byte[] sha256Digest = Sha256Digest.getInstance().digest(file, offset, length);
 
-		log.info("md5 digest result is: {}", Base64.getEncoder().encodeToString(md5Digest));
-		log.info("sha256 digest result is: {}", Base64.getEncoder().encodeToString(sha256Digest));
+		log.info("md5 digest result is: {}", Encoder.HEX.encode(md5Digest));
+		log.info("sha256 digest result is: {}", Encoder.HEX.encode(sha256Digest));
 	}
 
 	@Test

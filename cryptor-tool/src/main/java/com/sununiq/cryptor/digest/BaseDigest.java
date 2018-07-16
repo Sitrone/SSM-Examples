@@ -101,7 +101,7 @@ public abstract class BaseDigest implements Digest {
 		long remaining = offset - in.skip(offset);
 		while (remaining > 0) {
 			long skip = in.skip(remaining);
-			remaining = skip - remaining;
+			remaining -= skip;
 		}
 	}
 }
