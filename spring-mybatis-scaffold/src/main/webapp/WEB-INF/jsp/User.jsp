@@ -9,7 +9,8 @@
 <body>
 <div>
     <label>
-        <input type="text" value="${ user.name }"/>
+        <input type="text" value="${user.name}"/><br>
+        <input type="text" value="${user.id}">
     </label>
 </div>
 </body>

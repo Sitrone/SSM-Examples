@@ -9,7 +9,8 @@
     <mvc:annotation-driven/>
 
     <!-- 2.静态资源默认servlet配置 -->
-    <mvc:default-servlet-handler/>
+    <!--<mvc:default-servlet-handler/>-->
+    <mvc:resources location="/WEB-INF/static/" mapping="/resources/**"/>
 
     <!-- 3.配置jsp 显示ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
