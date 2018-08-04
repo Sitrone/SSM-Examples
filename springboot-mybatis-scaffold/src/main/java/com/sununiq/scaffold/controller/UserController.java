@@ -35,7 +35,7 @@ public class UserController {
 		User user = userService.queryById(id);
 
 		log.info("Find user:{}", user);
-		model.addAttribute(user);
+		model.addAttribute("user", user);
 
 		return "User";
 	}

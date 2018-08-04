@@ -26,22 +26,14 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket createRestApi() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(apiInfo())
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.sununiq.scaffold"))
-				.paths(PathSelectors.any())
-				.build();
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+				.apis(RequestHandlerSelectors.basePackage("com.sununiq.scaffold")).paths(PathSelectors.any()).build();
 	}
 
 	private ApiInfo apiInfo() {
 		Contact contact = new Contact("sununiq", "https://github.com/Sitrone", "ununiq@163.com");
-		return new ApiInfoBuilder()
-				.title("Spring Boot中使用Swagger2构建RESTful APIs")
+		return new ApiInfoBuilder().title("Spring Boot中使用Swagger2构建RESTful APIs")
 				.description("更多Spring相关用法请关注：https://github.com/Sitrone/SSM-Examples")
-				.termsOfServiceUrl("https://github.com/Sitrone")
-				.contact(contact)
-				.version("1.0")
-				.build();
+				.termsOfServiceUrl("https://github.com/Sitrone").contact(contact).version("1.0").build();
 	}
 }

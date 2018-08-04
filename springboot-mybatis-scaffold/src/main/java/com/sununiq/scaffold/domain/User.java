@@ -1,13 +1,9 @@
 package com.sununiq.scaffold.domain;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Setter
-@Getter
-@ToString
+@Data
 public class User {
 
 	@ApiModelProperty(value = "主键")
