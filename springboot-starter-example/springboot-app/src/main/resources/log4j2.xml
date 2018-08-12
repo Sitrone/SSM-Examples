@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j2的装配 -->
+<configuration status="OFF">
+    <properties>
+        <property name="logPath">${catalina.base}</property>
+    </properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%c{1.}:%L|%m%n"/>
+        </Console>
+
+        <RollingFile name="runningLog" fileName="logs/run.log"
+                     filePattern="${logPath}/logs/run-%d{yyyy-MM-dd}.log.%i">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%c{1.}:%L|%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="springLog" fileName="logs/spring.log"
+                     filePattern="${logPath}/logs/spring-%d{yyyy-MM-dd}.log.%i">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%c{1.}:%L|%m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="info">
+            <appender-ref ref="Console"/>
+        </root>
+
+        <Logger name="com.sununiq.app" level="info" additivity="false">
+            <!--保存文件,只存储info级别以上的日志-->
+            <AppenderRef ref="runningLog" level="info"/>
+            <!--控制台打印指定包路径下面的debug-->
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="springLog"/>
+        </Logger>
+    </loggers>
+</configuration>
