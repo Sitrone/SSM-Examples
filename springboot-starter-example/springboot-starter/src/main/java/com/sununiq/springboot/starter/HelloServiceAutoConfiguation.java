@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
  * @create: 2018-08-12 19:47
  **/
 @Configuration
-@ConditionalOnBean(HelloService.class)
 public class HelloServiceAutoConfiguation {
 
 	@Bean
