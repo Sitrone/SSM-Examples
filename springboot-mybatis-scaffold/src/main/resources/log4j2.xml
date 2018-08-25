@@ -9,6 +9,14 @@
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}|%p|%t|%c{1.}:%L|%m%n"/>
         </Console>
 
+        <RollingFile name="all" fileName="logs/all.log"
+                     filePattern="${logPath}/logs/all-%d{yyyy-MM-dd}.log.%i">
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingFile>
+
         <RollingFile name="runningLog" fileName="logs/run.log"
                      filePattern="${logPath}/logs/run-%d{yyyy-MM-dd}.log.%i">
             <PatternLayout>
@@ -35,6 +43,7 @@
     <loggers>
         <root level="info">
             <appender-ref ref="Console"/>
+            <appender-ref ref="all"/>
         </root>
 
         <Logger name="com.sununiq.scaffold" level="info" additivity="false">
