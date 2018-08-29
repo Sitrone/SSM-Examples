@@ -16,4 +16,9 @@ public class UserServiceImpl implements IUserService {
 	public User queryById(int id) {
 		return userMapper.queryById(id);
 	}
+
+	@Override
+	public void createUser(User user) {
+		userMapper.insertUser(user);
+	}
 }

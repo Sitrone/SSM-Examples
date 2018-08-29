@@ -4,7 +4,7 @@
 
 <mapper namespace="com.sununiq.scaffold.dao.UserMapper">
     <!-- 这里namespace必须是UserMapper接口的路径” -->
-    <insert id="insertUser" parameterType="User">
+    <insert id="insertUser"  parameterType="User" >
         insert into user(name, age, desc) values
         (#{name},#{age}, #{desc})
     </insert>
