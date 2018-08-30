@@ -6,6 +6,8 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.RequestParamMethodArgumentResolver;
+import org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +19,9 @@ import java.util.Date;
  *
  * spring对应请求方法参数的处理、响应返回值的处理对应两个接口分别是：
  * 		HandlerMethodArgumentResolver和HandlerMethodReturnValueHandler
+ *
+ * 	其中处理@RequestParam注解的是：{@link RequestParamMethodArgumentResolver}
+ * 	处理对象作为请求参数的类是：{@link ServletModelAttributeMethodProcessor}
  *
  * @author: sununiq
  *
