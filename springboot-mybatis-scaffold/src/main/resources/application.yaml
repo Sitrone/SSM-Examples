@@ -1,7 +1,7 @@
 spring:
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/goo?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://localhost:3306/employees?useUnicode=true&characterEncoding=utf8
       username: tester
       password: 12345678
       driver-class-name: com.mysql.jdbc.Driver
