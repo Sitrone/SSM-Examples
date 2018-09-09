@@ -107,6 +107,18 @@
             <artifactId>fluent-hc</artifactId>
             <version>4.5.3</version>
         </dependency>
+
+        <!--MyBatis 自动生成插件-->
+        <!--<dependency>-->
+        <!--<groupId>org.mybatis.generator</groupId>-->
+        <!--<artifactId>mybatis-generator</artifactId>-->
+        <!--<version>1.3.7</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-maven-plugin</artifactId>
+            <version>1.3.7</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -114,6 +126,25 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--https://segmentfault.com/q/1010000011580237-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
+                    <overwrite>false</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <version>1.3.7</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.44</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
