@@ -1,0 +1,22 @@
+#Organize Import Order
+#Mon Dec 05 13:29:31 CST 2016
+19=java
+18=javax
+17=com
+16=org
+15=com.github
+14=com.unique
+13=com.sl
+12=com.lc
+11=github
+10=unique
+9=sl
+8=lc
+7=\#com.github
+6=\#com.unique
+5=\#com.sl
+4=\#com.lc
+3=\#github
+2=\#unique
+1=\#sl
+0=\#lc
